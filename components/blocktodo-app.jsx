@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import sdk from '@farcaster/frame-sdk';
 import {
   useAccount,
+  useChainId,
   useConnect,
   useDisconnect,
   usePublicClient,
@@ -11,9 +12,10 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi';
+import { base } from 'wagmi/chains';
 import { todoAbi, CONTRACT_ADDRESS } from '@/lib/contract';
 import { siteConfig } from '@/lib/site';
-import { decodeTaskText, encodeTaskText, normalizeIndex, shortenAddress } from '@/lib/utils';
+import { decodeTaskText, encodeTaskText, getReadableError, isAscii, normalizeIndex, shortenAddress } from '@/lib/utils';
 import { trackTransaction } from '@/utils/track';
 
 function ConnectButtons() {
@@ -46,6 +48,7 @@ export function BlockTodoApp() {
   const [pendingAction, setPendingAction] = useState('');
   const [lastTrackedHash, setLastTrackedHash] = useState('');
   const { address, isConnected } = useAccount();
+  const chainId = useChainId();
   const { disconnect } = useDisconnect();
   const publicClient = usePublicClient();
   const { data: taskCount } = useReadContract({
@@ -54,7 +57,7 @@ export function BlockTodoApp() {
     functionName: 'getTaskCount',
     query: { refetchInterval: 12000 },
   });
-  const { writeContract, data: txHash, isPending: isWriting } = useWriteContract();
+  const { writeContractAsync, data: txHash, isPending: isWriting } = useWriteContract();
   const receipt = useWaitForTransactionReceipt({ hash: txHash });
 
   useEffect(() => {
@@ -139,41 +142,96 @@ export function BlockTodoApp() {
     };
   }, [publicClient, refreshTick]);
 
-  function createTask() {
-    if (!draft.trim()) {
+  async function submitWrite({ functionName, args, actionLabel }) {
+    if (!isConnected) {
+      setMessage('Connect a wallet before sending a transaction.');
+      return;
+    }
+
+    if (chainId !== base.id) {
+      setMessage('Switch your wallet to Base Mainnet and try again.');
+      return;
+    }
+
+    if (!publicClient) {
+      setMessage('Base RPC is not ready yet. Please try again.');
+      return;
+    }
+
+    setMessage(`Preparing ${actionLabel.toLowerCase()}...`);
+    setPendingAction(actionLabel);
+
+    try {
+      await publicClient.simulateContract({
+        abi: todoAbi,
+        address: CONTRACT_ADDRESS,
+        functionName,
+        args,
+        account: address,
+      });
+
+      await writeContractAsync({
+        abi: todoAbi,
+        address: CONTRACT_ADDRESS,
+        functionName,
+        args,
+      });
+      setMessage('Waiting for wallet confirmation...');
+    } catch (error) {
+      setMessage(getReadableError(error));
+    }
+  }
+
+  async function createTask() {
+    const trimmed = draft.trim();
+
+    if (!trimmed) {
       setMessage('Enter a short todo before sending.');
       return;
     }
 
-    setMessage('Waiting for wallet confirmation...');
-    setPendingAction('Add task');
-    writeContract({
-      abi: todoAbi,
-      address: CONTRACT_ADDRESS,
+    if (!isAscii(trimmed)) {
+      setMessage('Use plain ASCII text only so it fits the bytes32 contract format.');
+      return;
+    }
+
+    if (trimmed.length > 31) {
+      setMessage('Keep the task within 31 ASCII characters.');
+      return;
+    }
+
+    await submitWrite({
       functionName: 'addTask',
-      args: [encodeTaskText(draft)],
+      args: [encodeTaskText(trimmed)],
+      actionLabel: 'Add task',
     });
   }
 
-  function toggleTask(index) {
-    setMessage(`Sending toggle for task #${index}...`);
-    setPendingAction(`Toggle task #${index}`);
-    writeContract({
-      abi: todoAbi,
-      address: CONTRACT_ADDRESS,
+  async function toggleTask(index) {
+    const total = Number(taskCount ?? 0n);
+    if (index < 0 || index >= total) {
+      setMessage(`Task #${index} does not exist onchain.`);
+      return;
+    }
+
+    await submitWrite({
       functionName: 'toggleTask',
       args: [BigInt(index)],
+      actionLabel: `Toggle task #${index}`,
     });
   }
 
-  function deleteTask(index) {
-    setMessage(`Sending delete for task #${index}...`);
-    setPendingAction(`Delete task #${index}`);
-    writeContract({
-      abi: todoAbi,
-      address: CONTRACT_ADDRESS,
+  async function deleteTask(index) {
+    const total = Number(taskCount ?? 0n);
+    if (index < 0 || index >= total) {
+      setMessage(`Task #${index} does not exist onchain.`);
+      return;
+    }
+
+    await submitWrite({
       functionName: 'deleteTask',
       args: [BigInt(index)],
+      actionLabel: `Delete task #${index}`,
     });
   }
 
@@ -260,7 +318,7 @@ export function BlockTodoApp() {
             </article>
             <article>
               <span>Builder code</span>
-              <strong>Pending</strong>
+              <strong>{siteConfig.builderCode || 'Pending'}</strong>
             </article>
           </div>
         </div>
