@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#EAFBFF"/>
+  <circle cx="996" cy="128" r="114" fill="#FBF27B"/>
+  <circle cx="174" cy="520" r="132" fill="#8FD8FF" fill-opacity="0.4"/>
+  <rect x="88" y="78" width="1024" height="474" rx="44" fill="white" stroke="#B3E8FF" stroke-width="8"/>
+  <rect x="142" y="136" width="360" height="30" rx="15" fill="#1B77FF" fill-opacity="0.12"/>
+  <rect x="142" y="198" width="568" height="70" rx="18" fill="#F7FDFF"/>
+  <rect x="142" y="294" width="568" height="70" rx="18" fill="#F7FDFF"/>
+  <rect x="142" y="390" width="568" height="70" rx="18" fill="#F7FDFF"/>
+  <rect x="752" y="198" width="274" height="262" rx="30" fill="#0E4FB0"/>
+  <rect x="792" y="236" width="170" height="18" rx="9" fill="#FBF27B"/>
+  <rect x="792" y="286" width="186" height="14" rx="7" fill="white" fill-opacity="0.72"/>
+  <rect x="792" y="320" width="144" height="14" rx="7" fill="white" fill-opacity="0.72"/>
+  <rect x="792" y="372" width="152" height="48" rx="24" fill="#FBF27B"/>
+  <text x="142" y="184" fill="#1B77FF" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="74" font-weight="700">BlockTodo</text>
+  <text x="142" y="517" fill="#294566" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="34">Create, toggle, delete, and read todos on Base.</text>
+</svg>

@@ -1,0 +1,362 @@
+:root {
+  color-scheme: light;
+  --sky-1: #dff6ff;
+  --sky-2: #8fd8ff;
+  --sky-3: #1b77ff;
+  --lemon: #fbf27b;
+  --lemon-strong: #f3df2f;
+  --ink: #0b1730;
+  --muted: #4f6786;
+  --card: rgba(255, 255, 255, 0.8);
+  --line: rgba(16, 55, 110, 0.12);
+  --shadow: 0 24px 64px rgba(22, 93, 179, 0.16);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(251, 242, 123, 0.92), transparent 22%),
+    radial-gradient(circle at 82% 8%, rgba(143, 216, 255, 0.95), transparent 24%),
+    radial-gradient(circle at 78% 82%, rgba(27, 119, 255, 0.2), transparent 18%),
+    linear-gradient(180deg, #f4fdff 0%, #d8f0ff 100%);
+  color: var(--ink);
+}
+
+body {
+  padding: 20px 14px 56px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.hero-card,
+.composer-card,
+.focus-card,
+.board-card,
+.meta-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1.45fr 0.95fr;
+  gap: 18px;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -120px -140px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 242, 123, 0.95) 0%, rgba(251, 242, 123, 0) 72%);
+}
+
+.workspace-grid,
+.board-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.workspace-grid {
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.board-grid {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--sky-3);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-copy,
+.wallet-card,
+.composer-card,
+.focus-card,
+.board-card,
+.meta-card,
+.task-list,
+.meta-list,
+.mini-meta,
+.readiness-list {
+  display: grid;
+  gap: 16px;
+}
+
+.hero-copy {
+  align-content: start;
+  gap: 18px;
+}
+
+.hero-copy h1,
+.composer-card h2,
+.focus-card h2,
+.board-card h3,
+.meta-card h3,
+.task-item h4 {
+  margin: 0;
+}
+
+.hero-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(38px, 8vw, 76px);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.hero-copy p,
+.caption,
+.field span,
+.mini-meta article span,
+.meta-list article span,
+.readiness-list div,
+.wallet-list .caption,
+.composer-card p,
+.focus-card p,
+.board-card p,
+.meta-card p {
+  color: var(--muted);
+}
+
+.hero-copy p {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hero-stats,
+.meta-list,
+.mini-meta {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.meta-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mini-meta {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-stats article,
+.mini-meta article,
+.meta-list article,
+.task-item,
+.readiness-list div {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.hero-stats strong {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.hero-stats span,
+.mini-meta article span,
+.meta-list article span {
+  display: block;
+  font-size: 13px;
+}
+
+.wallet-card,
+.composer-card,
+.focus-card,
+.board-card,
+.meta-card {
+  padding: 24px;
+}
+
+.wallet-card {
+  align-content: start;
+  background:
+    linear-gradient(150deg, rgba(16, 83, 177, 0.95), rgba(6, 34, 82, 0.96)),
+    linear-gradient(120deg, rgba(251, 242, 123, 0.35), rgba(251, 242, 123, 0));
+  color: white;
+}
+
+.panel-top,
+.inline-between,
+.task-head,
+.task-actions,
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pill,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(251, 242, 123, 0.18);
+  color: var(--lemon);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(16, 55, 110, 0.15);
+  background: white;
+  outline: none;
+}
+
+.input:focus {
+  border-color: rgba(27, 119, 255, 0.65);
+  box-shadow: 0 0 0 4px rgba(143, 216, 255, 0.32);
+}
+
+.button {
+  border: 0;
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--sky-3), #0f58cf);
+  color: white;
+  box-shadow: 0 12px 24px rgba(27, 119, 255, 0.2);
+}
+
+.button-secondary {
+  background: linear-gradient(135deg, var(--lemon), var(--lemon-strong));
+  color: #554500;
+}
+
+.button-ghost {
+  background: rgba(16, 55, 110, 0.06);
+  color: var(--ink);
+}
+
+.status-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-open {
+  background: rgba(27, 119, 255, 0.12);
+  color: var(--sky-3);
+}
+
+.status-complete {
+  background: rgba(251, 242, 123, 0.3);
+  color: #665700;
+}
+
+.task-item {
+  display: grid;
+  gap: 10px;
+}
+
+.readiness-list {
+  gap: 10px;
+}
+
+.mono {
+  font-family: "Courier New", monospace;
+  word-break: break-all;
+}
+
+.caption {
+  font-size: 13px;
+}
+
+@media (max-width: 860px) {
+  .hero-card,
+  .workspace-grid,
+  .board-grid,
+  .hero-stats,
+  .meta-list,
+  .mini-meta {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    padding-inline: 12px;
+  }
+}

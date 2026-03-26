@@ -1,0 +1,16 @@
+<svg width="900" height="1600" viewBox="0 0 900 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1600" rx="64" fill="#F5FDFF"/>
+  <circle cx="714" cy="178" r="98" fill="#FBF27B"/>
+  <rect x="54" y="96" width="792" height="308" rx="40" fill="#0D4AA5"/>
+  <text x="110" y="188" fill="white" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="58" font-weight="700">Launch metadata</text>
+  <text x="110" y="246" fill="#D7EBFF" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="30">Hardcoded verification and production preview URLs.</text>
+  <rect x="54" y="452" width="792" height="946" rx="40" fill="white" stroke="#B9EDFF" stroke-width="8"/>
+  <rect x="104" y="518" width="310" height="180" rx="28" fill="#F7FDFF"/>
+  <rect x="486" y="518" width="310" height="180" rx="28" fill="#F7FDFF"/>
+  <rect x="104" y="750" width="310" height="180" rx="28" fill="#F7FDFF"/>
+  <rect x="486" y="750" width="310" height="180" rx="28" fill="#F7FDFF"/>
+  <rect x="104" y="982" width="692" height="320" rx="28" fill="#F7FDFF"/>
+  <rect x="146" y="1044" width="518" height="18" rx="9" fill="#8FD8FF"/>
+  <rect x="146" y="1092" width="604" height="18" rx="9" fill="#8FD8FF"/>
+  <rect x="146" y="1140" width="564" height="18" rx="9" fill="#8FD8FF"/>
+</svg>

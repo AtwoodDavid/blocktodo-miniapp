@@ -1,0 +1,19 @@
+<svg width="900" height="1600" viewBox="0 0 900 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1600" rx="64" fill="#DFF6FF"/>
+  <rect x="54" y="92" width="792" height="248" rx="40" fill="white" stroke="#B9EDFF" stroke-width="8"/>
+  <text x="100" y="188" fill="#1B77FF" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="62" font-weight="700">Live task board</text>
+  <text x="100" y="244" fill="#4A6788" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="30">Read directly from the deployed contract.</text>
+  <rect x="54" y="396" width="792" height="1020" rx="40" fill="white" stroke="#B9EDFF" stroke-width="8"/>
+  <rect x="102" y="474" width="696" height="172" rx="28" fill="#F7FDFF"/>
+  <rect x="132" y="522" width="224" height="20" rx="10" fill="#1B77FF"/>
+  <rect x="600" y="510" width="148" height="44" rx="22" fill="#FBF27B"/>
+  <rect x="132" y="580" width="450" height="18" rx="9" fill="#8FD8FF"/>
+  <rect x="132" y="702" width="696" height="172" rx="28" fill="#F7FDFF"/>
+  <rect x="162" y="750" width="240" height="20" rx="10" fill="#1B77FF"/>
+  <rect x="616" y="738" width="132" height="44" rx="22" fill="#DCEBFF"/>
+  <rect x="162" y="808" width="420" height="18" rx="9" fill="#8FD8FF"/>
+  <rect x="132" y="930" width="696" height="172" rx="28" fill="#F7FDFF"/>
+  <rect x="162" y="978" width="216" height="20" rx="10" fill="#1B77FF"/>
+  <rect x="600" y="966" width="148" height="44" rx="22" fill="#FBF27B"/>
+  <rect x="162" y="1036" width="490" height="18" rx="9" fill="#8FD8FF"/>
+</svg>
